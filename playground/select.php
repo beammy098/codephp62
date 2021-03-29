@@ -1,7 +1,7 @@
 <?php
 require_once 'connectdb.php';
 
-$statement = "SELECT * FROM users";
+$statement = "SELECT * FROM user";
 $mysqli_statement = $myConn->query($statement);
 // while ($row = $mysqli_statement->fetch_array()) {
 //     echo $row["id"] . ' ' . $row["username"] . ' ' . $row["status"] . '<br>';
