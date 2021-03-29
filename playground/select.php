@@ -33,6 +33,8 @@ $mysqli_statement = $myConn->query($statement);
             <td><?php echo $row["id"]?></td>
             <td><?php echo $row["username"]?></td>
             <td><?php echo $row["status"]?></td>
+            <td><a href="delete.php?id=111">delete</a></td>
+
         </tr>
         <?php
         }
