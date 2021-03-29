@@ -1,71 +1,43 @@
-<html>
+<?php
+require_once 'connectdb.php';
+
+$statement = "SELECT * FROM users";
+$mysqli_statement = $myConn->query($statement);
+// while ($row = $mysqli_statement->fetch_array()) {
+//     echo $row["id"] . ' ' . $row["username"] . ' ' . $row["status"] . '<br>';
+// }
+?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>รายชื่อนักศึกษา</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <?php
-    $host = "db";
-    $username = "root";
-    $password = "me12345678";
-
-    $database = 'phpproject';
-
-    $mysqli = new mysqli($host, $username, $password, $database);
-    if ($mysqli->connect_errno) {
-        printf("Connect failed: %s\n", $mysqli->connect_error);
-        exit();
-    }
-    $statement = "SELECT * FROM student";
-    // // // OOP mysqli
-    $mysqli_statement = $mysqli->query($statement);
-    // while ($row = $mysqli_statement->fetch_array()) {
-    //     echo $row["stuid"] . ' ' . $row["firstname"] . ' ' . $row["lastname"] . '<br>';
-    // }
-
-    ?>
-    <a href="insert.php">เพิ่มนักศึกษาใหม่</a>
-    <table width="650" border="1">
+    <table style="width: 100%;" border="1">
         <tr>
-            <th width="91">
-                <div align="center">Student ID </div>
-            </th>
-            <th width="98">
-                <div align="center">Name </div>
-            </th>
-            <th width="198">
-                <div align="center">Mobile </div>
-            </th>
-            <th width="50">
-                <div align="center">Edit </div>
-            </th>
-            <th width="80">
-                <div align="center">Delete </div>
-            </th>
+            <td>รหัส</td>
+            <td>ชื้อผู้ใช้</td>
+            <td>สถานะ</td>
+            <td>เเก้ไข</td>
+            <td>ลบ</td>
         </tr>
         <?php
-        while ($result = $mysqli_statement->fetch_array()) {
+        while ($row = $mysqli_statement->fetch_array()) {
         ?>
-            <tr>
-                <td>
-                    <div align="center"><?php echo $result["stuid"]; ?></div>
-                </td>
-                <td><?php echo $result["firstname"] . ' ' . $result["lastname"]; ?></td>
-                <td>
-                    <div align="center"><?php echo $result["mobile"]; ?></div>
-                </td>
-                <td align="center"><a href="update.php?StuID=<?php echo $result["stuid"]; ?>">Edit</a></td>
-                <td align="center"><a href="delete.php?StuID=<?php echo $result["stuid"]; ?>">Delete</a></td>
-            </tr>
+        <tr>
+            <td><?php echo $row["id"]?></td>
+            <td><?php echo $row["username"]?></td>
+            <td><?php echo $row["status"]?></td>
+        </tr>
         <?php
         }
         ?>
     </table>
-    <?php
-    $mysqli_statement->close();
-    $mysqli->close();
-    ?>
 </body>
 
 </html>
